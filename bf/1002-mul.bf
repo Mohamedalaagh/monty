@@ -1,42 +1,14 @@
-,>,                 # Input two characters
->++++++             # Set memory cell 1 to 6 (used as a counter for the outer loop)
-[
-	>++++++++        # Loop: Set memory cell 2 to 8 (used as a counter for the inner loop)
-	<-
-]
->>++++++            # Set memory cell 3 to 6 (used as a counter for the second outer loop)
-[
-	>++++++++        # Loop: Set memory cell 4 to 8 (used as a counter for the second inner loop)
-	<-
-]
->
-[
-	-               # Outer Loop: Decrement memory cell 1
-	<<<<-           # Move to memory cell 2
-	<-
-	>>>>>           # Move to memory cell 3
-]
-<<<<<
-[
-	>               # Inner Loop: Move to memory cell 4
-	[
-		>+          # Increment value at memory cell 4
-		>>+         # Increment value at memory cell 5
-		<<<-        # Move back to memory cell 3
-	]
-	>>>             # Move back to memory cell 1
-	[
-		-           # Decrement value at memory cell 1
-		<<<+        # Move back to memory cell 4 and increment
-		>>>         # Move back to memory cell 1
-	]
-	<<<<-           # Move back to memory cell 3
-]
->>
-[
-	-               # Second Outer Loop: Decrement memory cell 3
-	>+              # Increment value at memory cell 4
-	<               # Move back to memory cell 3
-]
->.                  # Output the character at the current memory cell
+>,------------------------------------------------ # Read the first character into memory cell #1
+>,------------------------------------------------ # Read the second character into memory cell #2
+
+[                           # Start of loop: COPY BLOCK 1 INTO BLOCK 3 AND 0 THEN COPY BLOCK 3 BACK TO BLOCK 1
+  <[>>+<<<+>-]               # Move to BLOCK 1 and copy to BLOCK 3 (Temporary storage)
+  >>[<<+>>-]                 # Move back to BLOCK 1 and copy from BLOCK 3
+<-]                          # End of loop, done with one iteration
+
+# Move to BLOCK 2 and decrease (BLOCK 2 now contains the difference between ASCII values)
+MOVE BLOCK TO BLOCK 2 AND DECREASE (DONE WITH ONE ITERATION)
+
+# Move to BLOCK 0 and increase by ASCII '0' (DEC 48)
+<<++++++++++++++++++++++++++++++++++++++++++++++++. # Print the result (BLOCK 0 now contains the result as ASCII)
 

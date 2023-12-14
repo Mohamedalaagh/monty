@@ -1,20 +1,18 @@
-,>,                 # Input two characters
->++++++             # Set memory cell 1 to 6 (used as a counter)
-[
-  >++++++++        # Loop: Set memory cell 2 to 8 (used as a counter for inner loop)
-  <-
-]
->
-[
-  -               # Outer Loop: Decrement memory cell 1
-  <<-
-  >>
-]
-<<
-[
-  -               # Inner Loop: Decrement memory cell 2
-  <+
-  >
-]
-<.                  # Output the character at the current memory cell
+# Read num (ASCII - 48) into memory cell #1
+>,-----------------------------------------------
+
+# Read num (ASCII - 48 ('0')) into memory cell #2
+>,-----------------------------------------------
+
+# Add the value in memory cell #2 to memory cell #0
+[<<+>>-] 
+
+# Move to memory cell #1 and add its value to memory cell #0
+<[<+>-] 
+
+# Increase the value in memory cell #0 to get the final result
+<++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+# Print the contents of memory cell #0
+.
 
